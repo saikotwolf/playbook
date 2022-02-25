@@ -171,6 +171,26 @@ Command: SharpHound.exe -c all -d {Domain} --zipfilename loop.zip
 
 ```
 
+## SMB
+
+### Tools
+
+- smbclient
+
+#### Enumeration
+
+*Enumerate shares*
+
+```
+Command : smbclient -U {USER} -L \\\\{IP/DOMAIN}\\
+```
+
+*Access to share*
+
+```
+Command : smbclient -U {USER} \\\\{IP/DOMAIN}\\{SHARE}
+```
+
 ## Kerberos
 
 ### Tools
