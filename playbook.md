@@ -422,3 +422,7 @@ Sub_Command : misc::skeleton
 ### Privilege Escalation
 
 [PEAS-ng](https://github.com/carlospolop/PEASS-ng) - *Windows, Linux & Mac privesc escalation tool*
+
+### Genereal
+
+[Powershell Ofenssive modules](https://github.com/samratashok/nishang)
