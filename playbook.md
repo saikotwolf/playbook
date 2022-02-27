@@ -170,6 +170,21 @@ Command: Invoke-Bloodhound -CollectionMethod All -Domain {Domain} -ZipFileName l
 Command: SharpHound.exe -c all -d {Domain} --zipfilename loop.zip
 
 ```
+## RPC
+
+#### Enumeration
+
+Enumerate rpc
+
+```
+Command: impacket-rpcdump {IP/DOMAIN}
+```
+
+Check if is vulnerable to printnightmare
+
+```
+Command: impacket-rpcdump {IP/DOMAIN} | egrep 'MS-RPRN|MS-PAR'
+```
 
 ## SMB
 
