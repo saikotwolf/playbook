@@ -112,6 +112,33 @@ Command: xfreerdp /u:"USER" /p:"PASSWORD" /d:"DOMAIN" /v:"IP" /dynamic-resolutio
 - BloodHound
 - SharpHound
 
+#### Local Services
+
+Get all service
+```
+Command : Get-Service 
+```
+
+Get specific service
+```
+Command : Get-Service <service name>
+```
+Get service permissions
+```
+Command : . .\Get-ServiceACL.ps1
+
+Command : <service name> | get-ServiceAcl | selec -ExpandProperty Access 
+```
+
+Operate services
+```
+Command : sc start <service name>
+Command : sc stop <service name>
+
+Command : Start-service -name <service name>
+Command : Stop-service -name <service name>
+```
+
 #### PowerView
 
 *Load PowerView script*
