@@ -320,9 +320,9 @@ Offline dumping of SAM secrets from exported hives
 ```
 Command : impacket-secretsdump -sam "<path to sam.save>" -system "<path to system.save>" LOCAL
 ```
-Offline dumping of SAM & LSA secrets from exported hives
+Offline dumping of SAM, LSA secrets and NTDS from exported hives
 ```
-Command : impacket-secretsdump -sam "<path to sam.save>" -security "<path to security.save> -system "<path to system.save> LOCAL
+Command : impacket-secretsdump -sam "<path to sam.save>" -security "<path to security.save>" -system "<path to system.save>" -ntds "<path to ntds.dit>" LOCAL
 ```
 #### Pass the hash
 ```
