@@ -254,6 +254,7 @@ Command : impacket-lookupsid -no-pass anonymous@<ip>
 
 - smbclient
 - smbmap
+- smbpasswd
 
 ### Enumeration
 
@@ -271,6 +272,11 @@ Command : smbclient -U <user> -L \\\\<ip/domain>\\
 ```
 Command : smbclient -U <user> \\\\<ip/domain>\\<share>
 ```
+
+#### Change password remote
+ ```
+ Command : smbpasswd -r <ip/domain> -U "<user>"
+ ```
 
 ## SAM and LSA
 
