@@ -273,6 +273,13 @@ Command : smbclient -U <user> -L \\\\<ip/domain>\\
 Command : smbclient -U <user> \\\\<ip/domain>\\<share>
 ```
 
+#### Get all file
+```
+Command: recurse on
+Command: prompt off
+Command: mget *
+```
+
 #### Change password remote
  ```
  Command : smbpasswd -r <ip/domain> -U "<user>"
