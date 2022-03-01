@@ -32,6 +32,11 @@ Command : wfuzz -u <url>/?FUZZ=ls+-la -w <wordlist> --hw 2
 # Linux
 
 ## Discovery & Scanning
+#### Nmpa light scan
+```
+Command : nmap -sV --version-light <ip/domain>
+```
+
 #### Scan tcp ports w/ nmap & nc
 ```
 Command : sudo nmap -sS -sV -T5 -v <ip/domain> -oG all_tcp.nmap
