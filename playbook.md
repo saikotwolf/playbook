@@ -197,12 +197,30 @@ Command: Invoke-Bloodhound -CollectionMethod All -Domain <domain> -ZipFileName l
 Command: SharpHound.exe -c all -d <domain> --zipfilename loop.zip
 
 ```
+
+## NFS
+
+### Tools
+
+- showmount
+
+#### Enumerate nfs folders
+```
+Command : showmount -e <ip/domain>
+```
+### Mount folder
+```
+Command : sudo mkdir /mnt/tmp_nfs
+Command : sudo mount -t nfs [-o vers=2] <ip/domain>:/<folder name> /mnt/tmp_nfs -o nolock
+```
+
 ## RPC
 
 ### Tools
 
 - impacket-rpcdump
 - impacket-lookupsid
+- rpcinfo
 
 ### Enumeration
 
@@ -210,6 +228,11 @@ Command: SharpHound.exe -c all -d <domain> --zipfilename loop.zip
 
 ```
 Command: impacket-rpcdump <domain/ip>
+```
+
+#### Enumerate rpcbind
+```
+Command : rpcinfo <ip/domain>
 ```
 
 #### Check if is vulnerable to printnightmare
