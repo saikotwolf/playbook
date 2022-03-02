@@ -263,6 +263,11 @@ Command : impacket-lookupsid -no-pass anonymous@<ip>
 
 ### Enumeration
 
+#### Enumerate users
+```
+Command : crackmapexec <service> <ip/domain> -u <user/wordlist> -p '<password>' --continue-on-success
+```
+
 #### Enumerate shares
 ```
 Command : smbclient -U <user> -L \\\\<ip/domain>\\
