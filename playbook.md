@@ -39,7 +39,7 @@ Command : nmap -sV --version-light <ip/domain>
 
 #### Scan tcp ports w/ nmap & nc
 ```
-Command : sudo nmap -sS -sV -T5 -v <ip/domain> -oG all_tcp.nmap
+Command : sudo nmap -sS -sV -T5 -p- -v <ip/domain> -oG all_tcp.nmap
 
   OR
 
@@ -47,7 +47,7 @@ Command : nc -zv <ip/domain> 1-65535
 ```
 #### Scan udp ports w/ nmap & nc
 ```
-Command : sudo nmap -sU -sV -T5 -v <ip/domain> -oG all_udp.nmap
+Command : sudo nmap -sU -sV -T5 -p- -v <ip/domain> -oG all_udp.nmap
 
   OR
 
