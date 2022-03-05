@@ -1,3 +1,23 @@
+# Restrictions
+
+You cannot use any of the following on the exam:
+
+- Spoofing (IP, ARP, DNS, NBNS, etc)
+- Commercial tools or services (Metasploit Pro, Burp Pro, etc.)
+- Automatic exploitation tools (e.g. db_autopwn, browser_autopwn, SQLmap, SQLninja etc.)
+- Mass vulnerability scanners (e.g. Nessus, NeXpose, OpenVAS, Canvas, Core Impact, SAINT, etc.)
+- Features in other tools that utilize either forbidden or restricted exam limitations
+
+You may use the following against all of the target machines:
+
+- multi handler (aka exploit/multi/handler)
+- msfvenom
+- pattern_create.rb
+- uppattern_offset.rb
+
+
+
+
 # Web Apps
 
 ### Tools
