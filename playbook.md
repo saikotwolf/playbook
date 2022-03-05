@@ -34,7 +34,7 @@ Command : wfuzz -u <url>/?FUZZ=ls+-la -w <wordlist> --hw 2
 ## Discovery & Scanning
 #### Nmpa light scan
 ```
-Command : nmap -sV --version-light <ip/domain>
+Command : nmap -sV -sC -v --version-light <ip/domain>
 ```
 
 #### Scan tcp ports w/ nmap & nc
